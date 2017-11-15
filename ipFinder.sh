@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 ############################################################################
 ## Copyright (c) 2017 Demosthenes Koptsis <demosthenesk@gmail.com>
@@ -32,23 +32,21 @@ SMTP_SERVER="smtp.gmail.com:587"
 
 #CHANGE USERNAME BEFORE FIRST USAGE
 USERNAME="my-email@gmail.com"
+
 #CHANGE PASSWORD BEFORE FIRST USAGE
 PASSWORD="xxxxxx"
-
 #######################################
 
 #### DO NOT CHANGE AFTER THIS LINE ####
-SENDEMAIL=`/usr/bin/which sendemail`
-DIG=`/usr/bin/which dig`
-IP=`$DIG +short myip.opendns.com @resolver1.opendns.com`
+IP=$("$(/usr/bin/env dig)" +short 'myip.opendns.com' '@resolver1.opendns.com')
 
-$SENDEMAIL -l email.log \
--f $EMAIL \
--u $SUBJECT \
--m $IP \
--t $EMAIL \
--s $SMTP_SERVER \
--o tls=yes \
--xu $USERNAME \
--xp $PASSWORD
+"$(/usr/bin/env sendemail)" -l email.log \
+-f "${EMAIL}" \
+-u "${SUBJECT}" \
+-m "${IP}" \
+-t "${EMAIL}" \
+-s "${SMTP_SERVER}" \
+-o 'tls=yes' \
+-xu "${USERNAME}" \
+-xp "${PASSWORD}"
 
