@@ -1,0 +1,10 @@
+ipFinder is a simple bash script that finds your wan ip address and email it to your email account.
+
+Before use it setup the SETTINGS.
+
+You can put this script to CRON to get in interval an email with your ip.
+You need to install sendemail first in order to use this script.
+
+sudo apt-get install sendemail libio-socket-ssl-perl
+
+
